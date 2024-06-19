@@ -14,7 +14,7 @@
   description:
   url: https://snakemake.github.io/snakemake-workflow-catalog/
   name: Snakemake Workflow Catalog
-- id: dockstore-tools
+- id: dockstore
   description: Search for workflows in the Dockstore registry.
   url: https://dockstore.org/search?entryType=workflows&searchMode=files
   name: Dockstore tool search
