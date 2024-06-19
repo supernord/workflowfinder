@@ -2,64 +2,19 @@
 # Data source for resource-table-all.html include - the modified include is from How-to Hub, and the original source of the include is the ELIXIR Toolkit Theme.
 # Thanks to @bedroesb for helping to modify the original include
 
-- id: biotools
-  description: Discover software tools.
-  url: https://bio.tools/
-  name: bio.tools
-- id: edam
-  description: Scientific ontology for data analysis and management, typically used for the life sciences. Covers Topics, Operations, Data types, and Formats.
-  url: https://edamontology.org/page
-  name: EDAM
-  registry:
-    biotools: edam-browser
-    europmc: 23479348
-- id: biocontainers
-  description: Discover and access containers for software tools.
-  url: https://biocontainers.pro/registry
-  name: BioContainers
-- id: galaxy-toolshed
-  description: Discover tools which can be requested for installation on Galaxy Australia.
-  url: https://toolshed.g2.bx.psu.edu/
-  name: Galaxy Tool Shed
+- id: workflowhub
+  description: A registry for describing, sharing and publishing scientific computational workflows.
+  url: https://workflowhub.eu/
+  name: WorkflowHub
+- id: nf-core
+  description:
+  url: https://nf-co.re/pipelines
+  name: nf-core
+- id: snakemake-registry
+  description:
+  url: https://snakemake.github.io/snakemake-workflow-catalog/
+  name: Snakemake Workflow Catalog
 - id: dockstore-tools
-  description: Search for tools in the Dockstore registry.
-  url: https://dockstore.org/search?entryType=tools&searchMode=files
+  description: Search for workflows in the Dockstore registry.
+  url: https://dockstore.org/search?entryType=workflows&searchMode=files
   name: Dockstore tool search
-
-- id: galaxy-new-tool
-  description: Request a tool for Galaxy Australia by visiting the link below.
-  url: https://site.usegalaxy.org.au/request/tool
-  name: Galaxy Australia
-- id: nci-new-tool
-  description: Request a tool for the National Computational Infrastructure (NCI) by visiting the link below, and contacting NCI if needed.
-  url: https://opus.nci.org.au/display/Help/5.+Software+Applications
-  name: National Computational Infrastructure (NCI)
-- id: nci-if89-new-tool
-  description: Request software installation for the Australian BioCommons Tools and Workflows repository at NCI (project `if89`) via the link below, or contribute to project `if89` by adding more tools that will be shared with other NCI users - https://australianbiocommons.github.io/ables/if89/.
-  url: https://docs.google.com/forms/d/e/1FAIpQLScpiyqERdxw6gMxjlq_CkiI3qvJ60YaeWHKTJChMjcnv8aBBA/viewform?usp=sf_link
-  name: Australian BioCommons Tools and Workflows repository at NCI (project `if89`)
-- id: pawsey-new-tool
-  description: Request a tool for Pawsey Supercomputing Centre (Pawsey) by visiting the Helpdesk Portal at the link below, or email `help@pawsey.org.au` with your request.
-  url: https://support.pawsey.org.au/portal/servicedesk/customer/user/login?destination=portals
-  name: Pawsey Supercomputing Centre (Pawsey)
-- id: rcc-new-tool
-  description: Request a tool for QRIScloud / UQ-RCC by completing a tool install request at the link below.
-  url: https://support.qcif.edu.au/Request-for-installation-of-QRIScloud-HPC
-  name: QRIScloud / UQ-RCC
-
-- id: bunya
-  description: Supercomputer located at the University of Queensland.
-  url: https://dx.doi.org/10.48610/wf6c-qy55
-  name: Bunya
-- id: gadi
-  description: Supercomputer located at the National Computational Infrastructure (NCI).
-  url: https://nci.org.au/our-systems/hpc-systems
-  name: Gadi
-- id: setonix
-  description: Supercomputer located at Pawsey Supercomputing Centre (Pawsey).
-  url: https://pawsey.org.au/systems/setonix/
-  name: Setonix
-- id: galaxy-australia
-  description: Galaxy Australia is an open, web-based platform for accessible, reproducible and transparent computational research.
-  url: https://usegalaxy.org.au/
-  name: Galaxy Australia

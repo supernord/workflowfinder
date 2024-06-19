@@ -4,8 +4,9 @@ sidebar: false
 datatable: true
 ---
 
+The interactive table below allows you to search for workflows [registered by Australian BioCommons partners on WorkflowHub](https://workflowhub.eu/programmes/8).
 
-This page lists bioinformatics tools and software that are installed across several of the [**BioCommons infrastructure partner systems**](https://support.biocommons.org.au/support/solutions/articles/6000251977-compute-systems-at-the-biocommons-partner-infrastructures). Tool / software status on other infrastructure partner systems will be added over time. Note: `NCI (if89)` in the table refers to the [Australian BioCommons Leadership Share (ABLeS) Tools and Workflows repository](https://australianbiocommons.github.io/ables/if89/), located in project allocation `if89` at the [National Computational Infrastructure (NCI)](https://nci.org.au/).
+If you would like to add your bioinformatics workflows to [WorkflowHub](https://workflowhub.eu/), please see this [getting started guide](https://about.workflowhub.eu/docs/getting-started/).
 
 
 <div class="d-flex flex-column">
@@ -18,60 +19,24 @@ This page lists bioinformatics tools and software that are installed across seve
       aria-expanded="false"
       aria-controls="collapseExample"
     >
-      Can’t find the software you need? Click here to see other options for
-      finding software.
+      Can’t find the workflows you need? Click here to see other options for
+      finding computational workflows.
       <i class="fa-solid fa-circle-chevron-down ms-1"></i>
     </button>
     <div class="collapse" id="collapse1">
       <div class="card card-body">
         <ul>
           <li>
-            {% tool "biotools" %}
+            {% tool "workflowhub" %}
           </li>
           <li>
-            {% tool "biocontainers" %}
+            {% tool "dockstore" %}
           </li>
           <li>
-            {% tool "galaxy-toolshed" %}
+            {% tool "nf-core" %}
           </li>
           <li>
-            {% tool "dockstore-tools" %}
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div>
-    <button
-      class="btn btn-secondary text-light"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#collapse2"
-      aria-expanded="false"
-      aria-controls="collapseExample"
-    >
-      Click to find out how to request installation of software on ToolFinder
-      listed infrastructures.
-      <i class="fa-solid fa-circle-chevron-down ms-1"></i>
-    </button>
-    <div class="collapse" id="collapse2">
-      <div class="card card-body">
-        <ul>
-          <li>
-            {% tool "galaxy-new-tool" %}
-          </li>
-          <li>
-            {% tool "nci-new-tool" %}
-          </li>
-          <li>
-            {% tool "nci-if89-new-tool" %}
-          </li>
-          <li>
-            {% tool "pawsey-new-tool" %}
-          </li>
-          <li>
-            {% tool "rcc-new-tool" %}
+            {% tool "snakemake-registry" %}
           </li>
         </ul>
       </div>
@@ -82,13 +47,4 @@ This page lists bioinformatics tools and software that are installed across seve
 <div markdown="0"> 
 {% include table.html %}
 </div>
-
-
-- The **Tool identifier** column (hidden by default) contains an identifier for the tool / workflow: typically the module name (used for matching to HPC lists).
-- The **Topic(s)** column categorises the tools by purpose, using an {% tool "edam" %} concept where possible. 
-- More information about a tool can be found by following the {% tool "biotools" %} links. 
-- When a tool has been containerised to allow for easier installation on any compute infrastructure, a link to the containerised software that can be downloaded from {% tool "biocontainers" %} is shown in the **Containers available? (BioContainers)** column. 
-- The primary source material for the table is manually curated, and while we endeavour to keep the information as current as possible, there is a natural limit to the volume of information maintained here. Production of this information will be automated over time, and tools that are not relevant for bioinformatics analyses removed.
-
-
 
