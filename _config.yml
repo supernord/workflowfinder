@@ -1,14 +1,14 @@
-title: "ToolFinder"
+title: "WorkflowFinder"
 # This appears in the html browser tab for the site title (seen mostly by search engines, not users)
 
-topnav_title: ToolFinder
+topnav_title: WorkflowFinder
 # Optional: this appears on the top navigation bar next to the main_logo.svg icon
 
-description: "ToolFinder"
+description: "WorkflowFinder"
 # Metadata description of the website
 
 remote_theme: ELIXIR-Belgium/elixir-toolkit-theme
-gtag: G-T8GWK081T9
+#gtag: G-T8GWK081T9
 
 theme_variables:
   # biocommons blue
