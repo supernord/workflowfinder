@@ -44,7 +44,3 @@ If you would like to add your bioinformatics workflows to [WorkflowHub](https://
   </div>
 </div>
 
-<div markdown="0"> 
-{% include table.html %}
-</div>
-
