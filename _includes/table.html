@@ -127,19 +127,15 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
             <i class="fa-solid fa-info-circle"></i> </a
           >{%- endif %}
         </th>
-        <th class="col-description">Description</th>
-        <th>Registry link</th>
-        <th>Tool identifier (e.g. module name)</th>
+        <th class="col-description">Workflow name</th>
         <th>Topic(s)</th>
-        <th class="col-publications">Publications</th>
-        <th>Containers available? (BioContainers)</th>
+        <th>Operation(s)</th>
         <th>License</th>
-        <th>Resources / documentation</th>
-        <th class="col-galaxy">Galaxy Australia</th>
-        <th>NCI (Gadi)</th>
-        <th>NCI (if89)</th>
-        <th>Pawsey (Setonix)</th>
-        <th class="col-badge">QRIScloud / UQ-RCC (Bunya)</th>
+        <th>Updated</th>
+        <th>DOI</th>
+        <th>Contributing Team(s)</th>
+        <th>User guide</th>
+        <th>Open workflow (if available)</th>
       </tr>
     </thead>
     <tbody>
@@ -160,25 +156,13 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
         endunless %} {%- endfor %}
         <td>
         <div>
-	      {% if tool.homepage %}
-	      <a href="{{tool.homepage}}">{{tool.name}}</a>
-	      {%- else %} {{tool.name}} {%- endif %}
+	      {% if tool.url %}
+	      <a href="https://workflowhub.eu/{{tool.url}}">{{tool.title}}</a>
+	      {%- else %} {{tool.title}} {%- endif %}
         </div>
         </td>
-        <td>{% if tool.description %} {{tool.description}} {%- endif %}</td>
         <td class="dt-center">
-          {% if tool.biotools != blank %}
-          <a
-            href="https://bio.tools/{{tool.biotools}}"
-            class="badge text-center px-4 biotools-button"
-          >
-            <img src="https://bio.tools/img/elixir_biotools_transparent.png" />
-          </a>
-          {%- endif %}
-        </td>
-        <td>{% if tool.id %} {{tool.id}} {%- endif %}</td>
-        <td class="dt-center">
-          {% if tool.edam-topics %} {%- for topic in tool.edam-topics %}
+          {% if tool.edam_top %} {%- for topic in tool.edam-topics %}
           <button
             class="btn btn-light badge border border-dark text-dark mb-2 text-wrap text-center topic-badge"
           >
@@ -186,159 +170,29 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
           </button>
           {%- endfor %} {%- endif %}
         </td>
-        <td>
-          {%- if tool.publications.size > 1 %}
-          <a
-            class="text-primary cursor-pointer"
-            data-bs-toggle="modal"
-            data-bs-target="#{{rowId}}-publications-modal"
+        <td class="dt-center">
+          {% if tool.edam_ops %} {%- for operation in tool.edam-ops %}
+          <button
+            class="btn btn-light badge border border-dark text-dark mb-2 text-wrap text-center topic-badge"
           >
-            {{tool.publications.size}} publications
-            <i class="fa-solid fa-circle-plus ms-1"></i>
-          </a>
-          <div
-            class="modal fade"
-            id="{{rowId}}-publications-modal"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
-            <div
-              class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-            >
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Publications</h5>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div class="modal-body">
-                  <ul class="ps-4 mb-0">
-                    {%- for publication in tool.publications %}
-                    <li>
-                      <a
-                        href="{{publication.url}}"
-                        target="_blank"
-                        class="fs-6 lh-lg"
-                        >{{publication.title}}</a
-                      >
-                    </li>
-                    {%- endfor %}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          {%- else %}
-          <a href="{{tool.publications[0].url}}">
-            {{tool.publications[0].title}}
-          </a>
-          {%- endif %}
-        </td>
-        <td>
-          {% if tool.biocontainers != blank %}
-          <a href="https://biocontainers.pro/tools/{{tool.biocontainers}}">
-            {{tool.name}}
-          </a>
-          {%- endif %}
-        </td>
-        <td>{% if tool.license != blank %} {{tool.license}} {%- endif %}</td>
-        <td>
-          {% if tool.resource-documentation == tool.resource-documentation %}
-          <a href="{{tool.resource-documentation}}">
-            {{tool.resource-documentation}}
-          </a>
-          {%- endif %}
-        </td>
-        <td>
-          {%- if tool.galaxy.size > 1 %}
-          <a
-            class="text-primary cursor-pointer"
-            data-bs-toggle="modal"
-            data-bs-target="#{{rowId}}-galaxy-modal"
-          >
-            {{tool.galaxy.size}} tools
-            <i class="fa-solid fa-circle-plus ms-1"></i>
-          </a>
-          <div
-            class="modal fade"
-            id="{{rowId}}-galaxy-modal"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
-            <div
-              class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"
-            >
-              <div class="modal-content">
-                <div class="modal-body">
-                  <div class="d-flex justify-content-end mb-3">
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <table class="table table-bordered mb-0 align-middle">
-                    <thead class="table-dark">
-                      <tr>
-                        <th>Tool Name</th>
-                        <th>Description</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {%- for galaxy-tool in tool.galaxy %}
-                      <tr>
-                        <td>
-                          <a
-                            href="{{galaxy-tool.url}}"
-                            target="_blank"
-                            class="fs-6 lh-lg"
-                            >{{galaxy-tool.title}}</a
-                          >
-                        </td>
-                        <td class="col-galaxy-description">
-                          {{galaxy-tool.description}}
-                        </td>
-                      </tr>
-                      {%- endfor %}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-          {%- else %}
-          <a href="{{tool.galaxy[0].url}}">{{tool.galaxy[0].title}}</a>
-          {%- endif %}
-        </td>
-        <td>
-          {% if tool.nci-gadi != blank %} {%- for gadi in tool.nci-gadi %}
-          <span class="badge text-bg-light mb-2">{{gadi}}</span>
+            {{operation}}
+          </button>
           {%- endfor %} {%- endif %}
         </td>
-        <td>
-          {% if tool.nci-if89 != blank %}
-          <span class="badge text-bg-light mb-2">{{tool.nci-if89}}</span>
-          {%- endif %}
+        <td>{% if tool.license != blank %} {{tool.license}} {%- endif %}</td>
+        <td>{% if tool.updated_at != blank %} {{tool.updated_at}} {%- endif %}</td>
+        <td>{% if tool.doi != blank %} {{tool.doi}} {%- endif %}</td>
+        <td class="dt-center">
+          {% if tool.projects %} {%- for project in tool.projects %}
+          <button
+            class="btn btn-light badge border border-dark text-dark mb-2 text-wrap text-center topic-badge"
+          >
+            {{project}}
+          </button>
+          {%- endfor %} {%- endif %}
         </td>
-        <td>
-          {% if tool.pawsey != blank %}
-          <span class="badge text-bg-light mb-2">{{tool.pawsey}}</span>
-          {%- endif %}
-        </td>
-        <td>
-          {% if tool.bunya != blank %}
-          <span class="badge text-bg-light mb-2 text-wrap word-break">
-            {{tool.bunya}}
-          </span>
-          {%- endif %}
-        </td>
+        <td>{% if tool.guide_link != blank %} {{tool.guide_link}} {%- endif %}</td>
+        <td>{% if tool.launch_link != blank %} {{tool.launch_link}} {%- endif %}</td>
       </tr>
       {%- endfor %}
     </tbody>
