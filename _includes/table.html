@@ -118,16 +118,7 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
         </th>
       </tr>
       <tr>
-        <th class="text-nowrap">
-          Tool Name {%- if include.tag -%}
-          <a
-            data-bs-toggle="tooltip"
-            data-bs-original-title="This is a curated list which means that not all tools or resources that exist for this topic are listed here. This is mainly because we do not intend to be a registry. In most cases you will only find back the tools or resources that are mentioned in this page."
-          >
-            <i class="fa-solid fa-info-circle"></i> </a
-          >{%- endif %}
-        </th>
-        <th class="col-description">Workflow name</th>
+        <th>Workflow name</th>
         <th>Topic(s)</th>
         <th>Operation(s)</th>
         <th>License</th>
@@ -219,8 +210,7 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
 <script>
   $(document).ready(function () {
     const table = $("#DataTables_Table_0").DataTable();
-    table.page.len(50);
-    table.columns([1, 3, 7, 8]).visible(false);
+    table.page.len(20);
     new $.fn.dataTable.Buttons(table, {
       buttons: [
         {
