@@ -178,12 +178,12 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
         </td>
         <td>
           {% if tool.guide_link != blank %}
-          <a href="View guide">{{tool.guide_link}}</a>
+          <a href="{{tool.guide_link}}">View guide</a>
           {%- endif %}
         </td>
         <td>
           {% if tool.launch_link != blank %}
-          <a href="Access workflow">{{tool.launch_link}}</a>
+          <a href="{{tool.launch_link}}">Access workflow</a>
           {%- endif %}
         </td>
       </tr>
