@@ -156,7 +156,7 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
         </div>
         </td>
         <td class="dt-center">
-          {% if tool.edam_top %} {%- for topic in tool.edam_top %}
+          {% if tool.edam_top %} {%- for topic in tool.edam_top | default: [] %}
           <button
             class="btn btn-light badge border border-dark text-dark mb-2 text-wrap text-center topic-badge"
           >
@@ -165,7 +165,7 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
           {%- endfor %} {%- endif %}
         </td>
         <td class="dt-center">
-          {% if tool.edam_ops %} {%- for operation in tool.edam_ops %}
+          {% if tool.edam_ops %} {%- for operation in tool.edam_ops | default: [] %}
           {{operation}}
           {%- endfor %} {%- endif %}
         </td>
@@ -173,7 +173,7 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
         <td>{% if tool.updated_at != blank %} {{tool.updated_at}} {%- endif %}</td>
         <td>{% if tool.doi != blank %} {{tool.doi}} {%- endif %}</td>
         <td class="dt-center">
-          {% if tool.projects %} {%- for project in tool.projects %}
+          {% if tool.projects %} {%- for project in tool.projects | default: [] %}
           {{project}}
           {%- endfor %} {%- endif %}
         </td>
