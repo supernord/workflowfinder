@@ -165,11 +165,7 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
         </td>
         <td class="dt-center">
           {% if tool.edam_ops %} {%- for operation in tool.edam_ops %}
-          <button
-            class="btn btn-light badge border border-dark text-dark mb-2 text-wrap text-center topic-badge"
-          >
             {{operation}}
-          </button>
           {%- endfor %} {%- endif %}
         </td>
         <td>{% if tool.license != blank %} {{tool.license}} {%- endif %}</td>
@@ -177,15 +173,19 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
         <td>{% if tool.doi != blank %} {{tool.doi}} {%- endif %}</td>
         <td class="dt-center">
           {% if tool.projects %} {%- for project in tool.projects %}
-          <button
-            class="btn btn-light badge border border-dark text-dark mb-2 text-wrap text-center topic-badge"
-          >
             {{project}}
-          </button>
           {%- endfor %} {%- endif %}
         </td>
-        <td>{% if tool.guide_link != blank %} {{tool.guide_link}} {%- endif %}</td>
-        <td>{% if tool.launch_link != blank %} {{tool.launch_link}} {%- endif %}</td>
+        <td>
+          {% if tool.guide_link != blank %}
+          <a href="View guide">{{tool.guide_link}}</a>
+          {%- endif %}
+        </td>
+        <td>
+          {% if tool.launch_link != blank %}
+          <a href="Access workflow">{{tool.launch_link}}</a>
+          {%- endif %}
+        </td>
       </tr>
       {%- endfor %}
     </tbody>
