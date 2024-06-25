@@ -115,7 +115,7 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
         <th class="dt-center text-white bg-secondary" colspan="2">
           Citation & credits
         </th>
-        <th class="dt-center text-white #2cb77c" colspan="2">
+        <th class="dt-center text-white bg-#2cb77c" colspan="2">
           Deployment
         </th>
       </tr>
@@ -344,9 +344,9 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
 
     function searchFilter(table, searchTerm) {
       if (searchType === "and") {
-        table.columns(4).search(searchTerm, false, true).draw();
+        table.columns(1).search(searchTerm, false, true).draw();
       } else {
-        table.columns(4).search(searchTerm, true, false).draw();
+        table.columns(1).search(searchTerm, true, false).draw();
       }
     }
 
