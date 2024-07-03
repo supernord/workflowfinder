@@ -4,9 +4,7 @@ sidebar: false
 datatable: true
 ---
 
-The interactive table below allows you to search for workflows [registered by Australian BioCommons partners on WorkflowHub](https://workflowhub.eu/programmes/8).
-
-If you would like to add your bioinformatics workflows to [WorkflowHub](https://workflowhub.eu/), please see this [getting started guide](https://about.workflowhub.eu/docs/getting-started/).
+The interactive table below allows you to search for workflows [registered by Australian BioCommons partners on WorkflowHub](https://workflowhub.eu/programmes/8). If you would like to add your bioinformatics workflows to [WorkflowHub](https://workflowhub.eu/), please see this [getting started guide](https://about.workflowhub.eu/docs/getting-started/).
 
 
 <div class="d-flex flex-column">
