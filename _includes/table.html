@@ -67,7 +67,7 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
   <table class="tooltable table display table-bordered table-striped w-100">
     <thead>
       <tr>
-        <th colspan="14">
+        <th colspan="9">
           <div class="d-flex align-items-center">
             <div class="py-2">Filter results by topic(s):</div>
             <div
@@ -126,6 +126,7 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
         <th>License</th>
         <th>Last updated</th>
         <th>Contributing Team(s)</th>
+        <th>DOI</th>
         <th>User guide</th>
         <th>Import to Galaxy Australia</th>
       </tr>
@@ -167,19 +168,27 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
             {{operation}}
           {%- endfor %} {%- endif %}
         </td>
-        <td>{% if tool.license != blank %} {{tool.license}} {%- endif %}</td>
-        <td>{% if tool.updated_at != blank %} {{tool.updated_at}} {%- endif %}</td>
+        <td class="dt-center">{% if tool.license != blank %} {{tool.license}} {%- endif %}</td>
+        <td class="dt-center">{% if tool.updated_at != blank %} {{tool.updated_at}} {%- endif %}</td>
         <td class="dt-center">
           {% if tool.projects %} {%- for project in tool.projects %}
             {{project}}
           {%- endfor %} {%- endif %}
         </td>
-        <td>
+        <td class="dt-center">
+          {% if tool.doi != blank %}
+          <button
+            class="btn btn-light badge border border-dark text-dark mb-2 text-wrap text-center"
+          >
+            <a href="https://doi.org/{{tool.doi}}">DOI</a>
+          </button>
+          {%- endif %}</td>
+        <td class="dt-center">
           {% if tool.guide_link != blank %}
           <a href="{{tool.guide_link}}">View guide</a>
           {%- endif %}
         </td>
-        <td>
+        <td class="dt-center">
           {% if tool.launch_link != blank %}
           <a href="{{tool.launch_link}}">Access workflow</a>
           {%- endif %}
