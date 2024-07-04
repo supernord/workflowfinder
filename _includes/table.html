@@ -112,7 +112,7 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
         <th class="dt-center text-white bg-primary" colspan="5">
           Workflow information
         </th>
-        <th class="dt-center text-white bg-secondary" colspan="2">
+        <th class="dt-center text-white bg-secondary" colspan="1">
           Credits
         </th>
         <th class="dt-center text-white bg-primary" colspan="2">
@@ -125,7 +125,6 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
         <th>Operation(s)</th>
         <th>License</th>
         <th>Last updated</th>
-        <th>DOI</th>
         <th>Contributing Team(s)</th>
         <th>User guide</th>
         <th>Import to Galaxy Australia</th>
@@ -170,14 +169,6 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
         </td>
         <td>{% if tool.license != blank %} {{tool.license}} {%- endif %}</td>
         <td>{% if tool.updated_at != blank %} {{tool.updated_at}} {%- endif %}</td>
-        <td class="dt-center">
-          {% if tool.doi != blank %}
-          <button
-            class="btn btn-light badge border border-dark text-dark mb-2 text-wrap text-center topic-badge"
-          >
-            <a href="https://doi.org/{{tool.doi}}">DOI</a>
-          </button>
-          {%- endif %}</td>
         <td class="dt-center">
           {% if tool.projects %} {%- for project in tool.projects %}
             {{project}}
