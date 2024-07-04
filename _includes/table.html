@@ -120,15 +120,15 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
         </th>
       </tr>
       <tr>
-        <th>Name</th>
-        <th>Topic(s)</th>
-        <th>Operation(s)</th>
-        <th>License</th>
-        <th>Last updated</th>
-        <th>Contributing Team(s)</th>
-        <th>DOI</th>
-        <th>User guide</th>
-        <th>Access</th>
+        <th class="dt-center">Name</th>
+        <th class="dt-center">Topic(s)</th>
+        <th class="dt-center">Operation(s)</th>
+        <th class="dt-center">License</th>
+        <th class="dt-center">Last updated</th>
+        <th class="dt-center">Contributing Team(s)</th>
+        <th class="dt-center">DOI</th>
+        <th class="dt-center">User guide</th>
+        <th class="dt-center">Access</th>
       </tr>
     </thead>
     <tbody>
@@ -150,7 +150,7 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
         <td>
         <div>
 	      {% if tool.url %}
-	      <a href="https://workflowhub.eu/{{tool.url}}">{{tool.title}}</a>
+	      <a href="https://workflowhub.eu{{tool.url}}">{{tool.title}}</a>
 	      {%- else %} {{tool.title}} {%- endif %}
         </div>
         </td>
@@ -177,11 +177,7 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
         </td>
         <td class="dt-center">
           {% if tool.doi != blank %}
-          <button
-            class="btn btn-light badge border border-dark text-dark mb-2 text-wrap text-center"
-          >
-            <a href="https://doi.org/{{tool.doi}}">DOI</a>
-          </button>
+          <a href="https://doi.org/{{tool.doi}}">DOI</a>
           {%- endif %}</td>
         <td class="dt-center">
           {% if tool.guide_link != blank %}
