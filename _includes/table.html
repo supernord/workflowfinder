@@ -170,7 +170,14 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
         </td>
         <td>{% if tool.license != blank %} {{tool.license}} {%- endif %}</td>
         <td>{% if tool.updated_at != blank %} {{tool.updated_at}} {%- endif %}</td>
-        <td>{% if tool.doi != blank %} {{tool.doi}} {%- endif %}</td>
+        <td class="dt-center">
+          {% if tool.doi != blank %}
+          <button
+            class="btn btn-light badge border border-dark text-dark mb-2 text-wrap text-center topic-badge"
+          >
+            <a href="https://doi.org/{{tool.doi}}">DOI</a>
+          </button>
+          {%- endif %}</td>
         <td class="dt-center">
           {% if tool.projects %} {%- for project in tool.projects %}
             {{project}}
