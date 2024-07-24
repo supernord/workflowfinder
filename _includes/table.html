@@ -172,7 +172,7 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
         <td class="dt-center">{% if tool.updated_at != blank %} {{tool.updated_at}} {%- endif %}</td>
         <td class="dt-center">
           {% if tool.projects %} {%- for project in tool.projects %}
-            {{project}}
+            {{project}}<br>
           {%- endfor %} {%- endif %}
         </td>
         <td class="dt-center">
