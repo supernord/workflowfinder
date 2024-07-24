@@ -115,7 +115,7 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
         <th class="dt-center text-white bg-secondary" colspan="2">
           Credits
         </th>
-        <th class="dt-center text-white bg-primary" colspan="2">
+        <th class="dt-center text-white bioc-yellow" colspan="2">
           Deployment
         </th>
       </tr>
@@ -147,7 +147,7 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
         endunless %} {%- unless instance_matches.size == 0 %} {%- assign
         instances_tool = instances_tool | plus: instance_matches.size %} {%-
         endunless %} {%- endfor %}
-        <td>
+        <td class="min-width:50px">
         <div>
 	      {% if tool.url %}
 	      <a href="https://workflowhub.eu{{tool.url}}">{{tool.title}}</a>
