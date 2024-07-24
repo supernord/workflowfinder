@@ -1,4 +1,4 @@
-name: Pull data.yml from australianbiocommons.github.io
+name: Pull data_workflows.yaml from australianbiocommons.github.io
 
 on:
   workflow_dispatch:
@@ -20,7 +20,7 @@ jobs:
       - name: Update
         run: |
           ls temporary_folder/data
-          cp -u temporary_folder/data/data.yaml _data/data.yaml
+          cp -u temporary_folder/data/data_workflows.yaml _data/data_workflows.yaml
           cd ..
           
       - name: Remove
@@ -31,8 +31,8 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add _data/data.yaml
-          git diff-index --quiet HEAD || git commit -m "Updated the data.yml sourced from australianbiocommons.github.io"
+          git add _data/data_workflows.yaml
+          git diff-index --quiet HEAD || git commit -m "Updated the data_workflows.yaml sourced from australianbiocommons.github.io"
 
       - name: Push if changes
         uses: ad-m/github-push-action@v0.6.0

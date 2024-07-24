@@ -17,6 +17,7 @@
   .tooltable th,
   .tooltable td {
     vertical-align: middle;
+    min-width: 100px;
   }
   .clear-all-button {
     display: none;
@@ -48,9 +49,8 @@
   }
 </style>
 
-{%- if include.tag %} {%- assign tools = site.data.data | add_related_pages |
-where:"related_pages", include.tag | sort_natural: "name" %} {%- else %} {%-
-assign tools = site.data.data | add_related_pages | sort_natural: "name" %} {%-
+{%- if include.tag %} {%- assign tools = site.data.data_workflows | sort_natural: "name" %} {%- else %} {%-
+assign tools = site.data.data_workflows | sort_natural: "name" %} {%-
 endif %} {%- assign country_pages = site.pages | where_exp: "item",
 "item.search_exclude != true" | where_exp:"item","item.national_resources !=
 nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
@@ -68,7 +68,7 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
   <table class="tooltable table display table-bordered table-striped w-100">
     <thead>
       <tr>
-        <th colspan="14">
+        <th colspan="9">
           <div class="d-flex align-items-center">
             <div class="py-2">Filter results by topic(s):</div>
             <div
@@ -110,36 +110,26 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
         </th>
       </tr>
       <tr>
-        <th class="dt-center text-white bg-primary" colspan="9">
-          Tool metadata
+        <th class="dt-center text-white bg-primary" colspan="5">
+          Workflow information
         </th>
-        <th class="dt-center text-white bg-secondary" colspan="5">
-          Availability on Australian compute infrastructures
+        <th class="dt-center text-white bg-secondary" colspan="2">
+          Credits
+        </th>
+        <th class="dt-center text-white bg-primary" colspan="2">
+          Deployment
         </th>
       </tr>
       <tr>
-        <th class="text-nowrap">
-          Tool Name {%- if include.tag -%}
-          <a
-            data-bs-toggle="tooltip"
-            data-bs-original-title="This is a curated list which means that not all tools or resources that exist for this topic are listed here. This is mainly because we do not intend to be a registry. In most cases you will only find back the tools or resources that are mentioned in this page."
-          >
-            <i class="fa-solid fa-info-circle"></i> </a
-          >{%- endif %}
-        </th>
-        <th class="col-description">Description</th>
-        <th>Registry link</th>
-        <th>Tool identifier (e.g. module name)</th>
-        <th>Topic(s)</th>
-        <th class="col-publications">Publications</th>
-        <th>Containers available? (BioContainers)</th>
-        <th>License</th>
-        <th>Resources / documentation</th>
-        <th class="col-galaxy">Galaxy Australia</th>
-        <th>NCI (Gadi)</th>
-        <th>NCI (if89)</th>
-        <th>Pawsey (Setonix)</th>
-        <th class="col-badge">QRIScloud / UQ-RCC (Bunya)</th>
+        <th class="dt-center">Name</th>
+        <th class="dt-center">Topic(s)</th>
+        <th class="dt-center">Operation(s)</th>
+        <th class="dt-center">License</th>
+        <th class="dt-center">Last updated</th>
+        <th class="dt-center">Contributing Team(s)</th>
+        <th class="dt-center">DOI</th>
+        <th class="dt-center">User guide</th>
+        <th class="dt-center">Access</th>
       </tr>
     </thead>
     <tbody>
@@ -158,27 +148,15 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
         endunless %} {%- unless instance_matches.size == 0 %} {%- assign
         instances_tool = instances_tool | plus: instance_matches.size %} {%-
         endunless %} {%- endfor %}
-        <td>
+        <td class="min-width:500px">
         <div>
-	      {% if tool.homepage %}
-	      <a href="{{tool.homepage}}">{{tool.name}}</a>
-	      {%- else %} {{tool.name}} {%- endif %}
+	      {% if tool.url %}
+	      <a href="https://workflowhub.eu{{tool.url}}">{{tool.title}}</a>
+	      {%- else %} {{tool.title}} {%- endif %}
         </div>
         </td>
-        <td>{% if tool.description %} {{tool.description}} {%- endif %}</td>
         <td class="dt-center">
-          {% if tool.biotools != blank %}
-          <a
-            href="https://bio.tools/{{tool.biotools}}"
-            class="badge text-center px-4 biotools-button"
-          >
-            <img src="https://bio.tools/img/elixir_biotools_transparent.png" />
-          </a>
-          {%- endif %}
-        </td>
-        <td>{% if tool.id %} {{tool.id}} {%- endif %}</td>
-        <td class="dt-center">
-          {% if tool.edam-topics %} {%- for topic in tool.edam-topics %}
+          {% if tool.edam_top %} {%- for topic in tool.edam_top %}
           <button
             class="btn btn-light badge border border-dark text-dark mb-2 text-wrap text-center topic-badge"
           >
@@ -186,157 +164,30 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
           </button>
           {%- endfor %} {%- endif %}
         </td>
-        <td>
-          {%- if tool.publications.size > 1 %}
-          <a
-            class="text-primary cursor-pointer"
-            data-bs-toggle="modal"
-            data-bs-target="#{{rowId}}-publications-modal"
-          >
-            {{tool.publications.size}} publications
-            <i class="fa-solid fa-circle-plus ms-1"></i>
-          </a>
-          <div
-            class="modal fade"
-            id="{{rowId}}-publications-modal"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
-            <div
-              class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-            >
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Publications</h5>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div class="modal-body">
-                  <ul class="ps-4 mb-0">
-                    {%- for publication in tool.publications %}
-                    <li>
-                      <a
-                        href="{{publication.url}}"
-                        target="_blank"
-                        class="fs-6 lh-lg"
-                        >{{publication.title}}</a
-                      >
-                    </li>
-                    {%- endfor %}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          {%- else %}
-          <a href="{{tool.publications[0].url}}">
-            {{tool.publications[0].title}}
-          </a>
-          {%- endif %}
-        </td>
-        <td>
-          {% if tool.biocontainers != blank %}
-          <a href="https://biocontainers.pro/tools/{{tool.biocontainers}}">
-            {{tool.name}}
-          </a>
-          {%- endif %}
-        </td>
-        <td>{% if tool.license != blank %} {{tool.license}} {%- endif %}</td>
-        <td>
-          {% if tool.resource-documentation == tool.resource-documentation %}
-          <a href="{{tool.resource-documentation}}">
-            {{tool.resource-documentation}}
-          </a>
-          {%- endif %}
-        </td>
-        <td>
-          {%- if tool.galaxy.size > 1 %}
-          <a
-            class="text-primary cursor-pointer"
-            data-bs-toggle="modal"
-            data-bs-target="#{{rowId}}-galaxy-modal"
-          >
-            {{tool.galaxy.size}} tools
-            <i class="fa-solid fa-circle-plus ms-1"></i>
-          </a>
-          <div
-            class="modal fade"
-            id="{{rowId}}-galaxy-modal"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
-            <div
-              class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"
-            >
-              <div class="modal-content">
-                <div class="modal-body">
-                  <div class="d-flex justify-content-end mb-3">
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <table class="table table-bordered mb-0 align-middle">
-                    <thead class="table-dark">
-                      <tr>
-                        <th>Tool Name</th>
-                        <th>Description</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {%- for galaxy-tool in tool.galaxy %}
-                      <tr>
-                        <td>
-                          <a
-                            href="{{galaxy-tool.url}}"
-                            target="_blank"
-                            class="fs-6 lh-lg"
-                            >{{galaxy-tool.title}}</a
-                          >
-                        </td>
-                        <td class="col-galaxy-description">
-                          {{galaxy-tool.description}}
-                        </td>
-                      </tr>
-                      {%- endfor %}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-          {%- else %}
-          <a href="{{tool.galaxy[0].url}}">{{tool.galaxy[0].title}}</a>
-          {%- endif %}
-        </td>
-        <td>
-          {% if tool.nci-gadi != blank %} {%- for gadi in tool.nci-gadi %}
-          <span class="badge text-bg-light mb-2">{{gadi}}</span>
+        <td class="dt-center">
+          {% if tool.edam_ops %} {%- for operation in tool.edam_ops %}
+            {{operation}}
           {%- endfor %} {%- endif %}
         </td>
-        <td>
-          {% if tool.nci-if89 != blank %}
-          <span class="badge text-bg-light mb-2">{{tool.nci-if89}}</span>
+        <td class="dt-center">{% if tool.license != blank %} {{tool.license}} {%- endif %}</td>
+        <td class="dt-center">{% if tool.updated_at != blank %} {{tool.updated_at}} {%- endif %}</td>
+        <td class="dt-center">
+          {% if tool.projects %} {%- for project in tool.projects %}
+            {{project}}<br>
+          {%- endfor %} {%- endif %}
+        </td>
+        <td class="dt-center">
+          {% if tool.doi != blank %}
+          <a href="https://doi.org/{{tool.doi}}">DOI</a>
+          {%- endif %}</td>
+        <td class="dt-center">
+          {% if tool.guide_link != blank %}
+          <a href="{{tool.guide_link}}">View guide</a>
           {%- endif %}
         </td>
-        <td>
-          {% if tool.pawsey != blank %}
-          <span class="badge text-bg-light mb-2">{{tool.pawsey}}</span>
-          {%- endif %}
-        </td>
-        <td>
-          {% if tool.bunya != blank %}
-          <span class="badge text-bg-light mb-2 text-wrap word-break">
-            {{tool.bunya}}
-          </span>
+        <td class="dt-center">
+          {% if tool.launch_link != blank and tool.class == "galaxy" %}
+          <a href="{{tool.launch_link}}">Import to Galaxy Australia</a>
           {%- endif %}
         </td>
       </tr>
@@ -365,8 +216,7 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
 <script>
   $(document).ready(function () {
     const table = $("#DataTables_Table_0").DataTable();
-    table.page.len(50);
-    table.columns([1, 3, 7, 8]).visible(false);
+    table.page.len(20);
     new $.fn.dataTable.Buttons(table, {
       buttons: [
         {
@@ -498,9 +348,9 @@ nil" %} {%- unless tools.size == 0 or tools == nil %} {%- if include.tag %}
 
     function searchFilter(table, searchTerm) {
       if (searchType === "and") {
-        table.columns(4).search(searchTerm, false, true).draw();
+        table.columns(1).search(searchTerm, false, true).draw();
       } else {
-        table.columns(4).search(searchTerm, true, false).draw();
+        table.columns(1).search(searchTerm, true, false).draw();
       }
     }
 
