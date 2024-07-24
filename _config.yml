@@ -8,7 +8,7 @@ description: "WorkflowFinder"
 # Metadata description of the website
 
 remote_theme: ELIXIR-Belgium/elixir-toolkit-theme
-#gtag: G-T8GWK081T9
+gtag: G-T8GWK081T9
 
 theme_variables:
   # biocommons blue
